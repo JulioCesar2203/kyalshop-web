@@ -96,10 +96,11 @@ window.onload = function() {
     calcularCostos();
 }
 
-// --- FUNCIÓN PARA ENVIAR WHATSAPP ---
+// --- FUNCIÓN PARA ENVIAR WHATSAPP (PERSONAL SHOPPER) ---
 function enviarWhatsApp() {
     const numero = "51995210831";
-    const mensaje = "Hola! Quiero información sobre el servicio de Personal Shopper de Kyalshop";
+    const planSeleccionado = document.getElementById('banner-nombre').innerText;
+    const mensaje = `Hola! Quiero información sobre el servicio de Personal Shopper. Como ${planSeleccionado}.`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 }
