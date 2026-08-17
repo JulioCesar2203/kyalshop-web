@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyalshop</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="logo-container">
+            <img src="logo_kyalshop.png" alt="Kyalshop Logo" class="logo-img">
+            <span class="logo-text">Kyalshop</span>
+        </div>
+        <button class="btn-outline">✈ KYALCOURIER</button>
+    </header>
+
+    <!-- PANTALLA PRINCIPAL (Pantalla 1) -->
+    <main id="pantalla-principal">
+        <div class="hero">
+            <!-- Nuevas imágenes centrales -->
+            <div class="hero-logos">
+                <img src="logo_kyalshopweb.png" alt="Kyalshop Importaciones" class="hero-logo-img">
+                <div class="divider"></div>
+                <img src="logo_kyalcourierweb.png" alt="Kyal Courier" class="hero-logo-img fondo-azul">
+            </div>
+            
+            <h1>Somos tu mejor opción 💛</h1>
+            <p>Selecciona el servicio que necesitas y te damos toda la información o te conectamos directo por WhatsApp.</p>
+        </div>
+
+        <div class="servicios-container">
+            <!-- Tarjeta 1 -->
+            <div class="card" onclick="cambiarPantalla('pantalla-shopper')">
+                <div class="icon">🛍️</div>
+                <h3>Personal Shopper</h3>
+                <p>Compra en USA, recíbelo en Perú</p>
+            </div>
+            <!-- Tarjeta 2 -->
+            <div class="card" onclick="cambiarPantalla('pantalla-courier')">
+                <div class="icon">✈️</div>
+                <h3>Servicio de Courier</h3>
+                <p>Envío directo Miami → Perú</p>
+            </div>
+            <!-- Tarjeta 3 -->
+            <div class="card" onclick="cambiarPantalla('pantalla-personalizada')">
+                <div class="icon">✨</div>
+                <h3>Compras Personalizadas</h3>
+                <p>Un servicio hecho a tu medida</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- PANTALLA: PERSONAL SHOPPER -->
+    <section id="pantalla-shopper" class="oculta">
+        <button class="btn-volver" onclick="cambiarPantalla('pantalla-principal')">← Volver al inicio</button>
+        <h2>🛍️ Personal Shopper</h2>
+        <p>Compramos cualquier producto en tiendas de USA y te lo enviamos a Perú. Elige el plan que mejor se adapta a tu compra.</p>
+
+        <!-- Tarjetas de los 3 Planes -->
+        <div class="planes-container">
+            <!-- Plan Explorador -->
+            <div class="plan-card explorador" onclick="seleccionarPlan('explorador')">
+                <div class="plan-icon">🔍</div>
+                <h3>Cliente Explorador</h3>
+                <p>Para compras menores a $200 USD</p>
+                <div class="plan-details">
+                    <span>COSTO:</span> <strong>$7 LA LIBRA</strong>
+                </div>
+                <div class="plan-comision explorador-bg">
+                    <span>COMISIÓN:</span> <strong>20%</strong>
+                </div>
+            </div>
+
+            <!-- Plan Habitual -->
+            <div class="plan-card habitual" onclick="seleccionarPlan('habitual')">
+                <div class="plan-icon">🛒</div>
+                <h3>Cliente Habitual</h3>
+                <p>Para compras mayores a $200 USD</p>
+                <div class="plan-details">
+                    <span>COSTO:</span> <strong>$10 EL KILO</strong>
+                </div>
+                <div class="plan-comision habitual-bg">
+                    <span>COMISIÓN:</span> <strong>18%</strong>
+                </div>
+            </div>
+
+            <!-- Plan VIP -->
+            <div class="plan-card vip" onclick="seleccionarPlan('vip')">
+                <div class="badge-mejor">MEJOR</div>
+                <div class="plan-icon">👑</div>
+                <h3>Cliente VIP</h3>
+                <p>Para compras mayores a $500 USD</p>
+                <div class="plan-details">
+                    <span>COSTO:</span> <strong>$10 EL KILO</strong>
+                </div>
+                <div class="plan-comision vip-bg">
+                    <span>COMISIÓN:</span> <strong>15%</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora de Costos -->
+        <div class="calculadora-container">
+            <h3 class="titulo-calc">🧮 CALCULADORA DE COSTOS</h3>
+
+            <!-- Banner que cambia según el plan elegido -->
+            <div class="plan-activo-banner" id="banner-plan">
+                <div>
+                    <h4 id="banner-nombre">Cliente Explorador</h4>
+                    <p id="banner-desc">Para compras menores a $200 USD</p>
+                </div>
+                <div class="banner-tarifas">
+                    <strong id="banner-costo">$7 LA LIBRA</strong>
+                    <span class="badge-comision" id="banner-comision">20%</span>
+                </div>
+            </div>
+
+            <!-- Cajas para ingresar precio y peso -->
+            <div class="inputs-calculadora">
+                <div class="input-group">
+                    <label>Precio (USD)</label>
+                    <input type="number" id="calc-precio" value="120" oninput="calcularCostos()">
+                </div>
+                <div class="input-group">
+                    <label>Peso (lb o kg)</label>
+                    <input type="number" id="calc-peso" value="2" oninput="calcularCostos()">
+                </div>
+            </div>
+
+            <!-- Resultados desglosados -->
+            <div class="resultados-calculadora">
+                <div class="fila-resultado">
+                    <span>Precio del producto</span>
+                    <span id="res-precio">$120.00</span>
+                </div>
+                <div class="fila-resultado">
+                    <span>Taxes USA (7.5%)</span>
+                    <span id="res-taxes">+$9.00</span>
+                </div>
+                <div class="fila-resultado">
+                    <span id="label-envio">Envío (2 lb × $7)</span>
+                    <span id="res-envio">+$14.00</span>
+                </div>
+                <div class="fila-resultado">
+                    <span id="label-comision">Comisión (20%)</span>
+                    <span id="res-comision">+$25.80</span>
+                </div>
+                <div class="fila-resultado alerta-roja">
+                    <span>❌ Desaduanaje</span>
+                    <span>$0.00</span>
+                </div>
+
+                <div class="fila-total">
+                    <div class="total-soles">
+                        <small>Total en Soles</small>
+                        <h2 id="res-total-soles">S/ 641.44</h2>
+                    </div>
+                    <div class="total-usd">
+                        <small>Total USD</small>
+                        <h2 id="res-total-usd">$168.80</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-whatsapp" onclick="enviarWhatsApp()">💬 Consultar por WhatsApp</button>
+        </div>
+    </section>
+
+    <!-- PANTALLA: SERVICIO COURIER -->
+    <section id="pantalla-courier" class="oculta">
+        <button class="btn-volver" onclick="cambiarPantalla('pantalla-principal')">← Volver al inicio</button>
+        <div class="icono-titulo">✈️</div>
+        <h2>Servicio de Courier</h2>
+        <p>Recibimos tus paquetes y los enviamos directo a Perú.</p>
+
+        <div class="courier-container">
+            <!-- Tarjeta Miami -->
+            <div class="courier-card miami">
+                <div class="badge-tarifa">✦ TARIFA FIJA ✦</div>
+                <div class="plan-icon">🌴</div>
+                <h3>Directo de Miami a Perú</h3>
+                <div class="precio-courier"><strong>$10</strong><span> / kg</span></div>
+                <p>Tarifa fija por kilo. Sin sorpresas ni costos ocultos. Pesaje cerrado al recibir tu paquete.</p>
+                <div class="tags-courier">
+                    <span class="tag-gris">⚖️ Pesaje cerrado</span>
+                    <span class="tag-verde">✅ Sin desaduanaje</span>
+                </div>
+            </div>
+
+            <!-- Tarjeta Otros Estados -->
+            <div class="courier-card otros-estados">
+                <div class="plan-icon">🗺️</div>
+                <h3>Otros Estados</h3>
+                <h4 class="sub-cotiza">¡Cotiza aquí!</h4>
+                <p>¿Tu paquete viene desde otro estado de USA? El costo varía según el origen. Escríbenos y te cotizamos en minutos.</p>
+                <!-- OJO AQUÍ: Botón modificado para Otros Estados -->
+                <button class="btn-whatsapp-small" onclick="enviarWhatsAppOtrosEstados()">💬 Cotizar por WhatsApp</button>
+            </div>
+        </div>
+
+        <!-- OJO AQUÍ: Botón modificado para Miami a Perú -->
+        <button class="btn-whatsapp main-btn" onclick="enviarWhatsAppMiami()">💬 Contactar por WhatsApp</button>
+        <p class="horario-nota">Lunes a sábado • 9am – 8pm</p>
+    </section>
+
+    <!-- PANTALLA: COMPRAS PERSONALIZADAS -->
+    <section id="pantalla-personalizada" class="oculta">
+        <button class="btn-volver" onclick="cambiarPantalla('pantalla-principal')">← Volver al inicio</button>
+        <div class="icono-titulo">✨</div>
+        <h2>Compras Personalizadas</h2>
+        <p>Un shopper exclusivo dedicado 100% a ti. Cuéntanos qué necesitas y lo conseguimos.</p>
+
+        <!-- Recuadros de requisitos -->
+        <div class="stats-container">
+            <div class="stat-box stat-verde">
+                <div class="stat-icon">💵</div>
+                <div class="stat-label">COMPRA MÍNIMA</div>
+                <div class="stat-valor">$500 USD</div>
+                <div class="stat-desc">Monto mínimo por sesión</div>
+            </div>
+            <div class="stat-box stat-roja">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-label">TIEMPO MÍNIMO</div>
+                <div class="stat-valor">1 hora</div>
+                <div class="stat-desc">Duración mínima de cita</div>
+            </div>
+            <div class="stat-box stat-amarilla">
+                <div class="stat-icon">🔐</div>
+                <div class="stat-label">DEPÓSITO PREVIO</div>
+                <div class="stat-valor">$50 USD</div>
+                <div class="stat-desc">Se descuenta del total</div>
+            </div>
+        </div>
+
+        <!-- Caja de instrucciones -->
+        <div class="info-box">
+            <h3>¿Cómo funciona?</h3>
+            <ul class="lista-check">
+                <li>✅ Aceptamos una compra mínima de $500 USD por sesión</li>
+                <li>✅ El tiempo mínimo de atención es de 1 hora continua</li>
+                <li>✅ Se requiere depósito previo de $50 USD para confirmar la cita</li>
+                <li>✅ El depósito se descuenta del total de tu compra</li>
+                <li>✅ Tu shopper personal te asesora en tiempo real durante la sesión</li>
+            </ul>
+        </div>
+
+        <!-- Llamado a la acción -->
+        <div class="agenda-container">
+            <h3>Agenda tu cita 🗓️</h3>
+            <p>Escríbenos por WhatsApp y coordinamos todo.</p>
+            <button class="btn-whatsapp main-btn" onclick="enviarWhatsAppPersonalizada()">💬 Agendar por WhatsApp</button>
+            <p class="nota-deposito">Depósito de $50 confirma tu reserva · Se descuenta del total</p>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>Kyalshop Importaciones © 2026 | T/C S/ 3.80 | IGV 7.5%</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
