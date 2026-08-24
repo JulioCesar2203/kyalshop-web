@@ -17,20 +17,24 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 15px 5%; 
     border-bottom: 1px solid #f0f0f0;
+    width: 100%;
+    gap: 10px;
 }
 
 .btn-outline {
     border: 2px solid #5a4b9c;
     color: #5a4b9c;
     background: transparent;
-    padding: 10px 20px;
+    padding: clamp(6px, 2vw, 10px) clamp(10px, 3vw, 20px);
     border-radius: 20px;
     font-weight: 600;
+    font-size: clamp(0.75rem, 3vw, 1rem); 
     cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
-
 main, section {
     flex: 1;
     padding: 40px 20px;
@@ -176,6 +180,10 @@ footer {
     .inputs-calculadora { 
         flex-direction: row;
     }
+    
+    header {
+        padding: 20px 50px;
+    }
 }
 
 
@@ -290,25 +298,26 @@ footer {
 .agenda-container p { color: #666; margin-bottom: 20px; }
 .nota-deposito { font-size: 0.8rem !important; color: #aaa !important; margin-top: 10px !important; }
 
-/* --- AJUSTES DE CABECERA Y LOGO --- */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px; 
+    flex-shrink: 1;
 }
 
 .logo-img {
-    width: 45px; /* Hace que el logo de arriba sea pequeño y parejo */
+    width: clamp(35px, 8vw, 45px);
     height: auto;
+    flex-shrink: 0;
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 4vw, 1.5rem); 
     font-weight: 700;
     color: #2c2560;
+    white-space: nowrap;
 }
 
-/* --- IMÁGENES CENTRALES (HERO) --- */
 .hero-logos {
     display: flex;
     justify-content: center;
@@ -322,12 +331,12 @@ footer {
     height: 160px;
     border-radius: 25px;
     object-fit: contain;
-    background-color: #ffffff; /* Le devolvemos el fondo blanco a Kyalshop */
+    background-color: #ffffff;
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
 .fondo-azul {
-    background-color: #1b3556; /* Este azul ahora solo se aplicará al Courier */
+    background-color: #1b3556;
 }
 
 .divider {
